@@ -3,6 +3,8 @@ import React, { useState } from "react";
 export const Todolist = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editingText, setEditingText] = useState('');
 
   // function to add a new task
   const addTodo = () => {
@@ -19,6 +21,31 @@ export const Todolist = () => {
     setTodos(newTodos);
   };
 
+
+//   function editing todolist
+    const startEditing = (index) =>{
+        setEditingIndex(index);
+        setEditingText(todos[index]);
+    }
+
+    // function save
+    const saveEdit =(index) =>{
+    const newTodos = [...todos];
+    newTodos[index] = editingText;
+
+
+    setTodos(newTodos);
+    setEditingIndex(null);
+    setEditingText("");
+    }
+
+
+    // function cancel
+    const cancelEdit =()=>{
+        setEditingIndex(null);
+        setEditingText("");
+    }
+
   return (
     <div className="text-center mt-5">
       <h1>Todo List </h1>
@@ -33,7 +60,28 @@ export const Todolist = () => {
       </button>
 
       <ul>
-        {todos.map((todo, index) => <li>{todo} <button className="btn btn-danger" onClick={removeTodo}>Remove</button><button className="btn btn-warning" >Edit</button> </li>)}
+        {todos.map((todo, index) => <li key={index}>
+            
+
+        {editingIndex === index ? (
+                   <>
+                   <input type="text" value={editingText} onChange={(e)=> setEditingText(e.target.value)} />
+                   <button className="btn btn-primary" onClick={()=> saveEdit(index)}>save</button>
+                   <button className="btn btn-danger" onClick={()=>cancelEdit(index)}>Cancel</button>
+                    </>
+            ):(
+               <>
+                {todo} <button className="btn btn-danger" onClick={removeTodo}>Remove</button>
+                <button className="btn btn-warning" onClick={()=> startEditing(index)} >Edit</button> </>
+            )
+        
+        
+        }
+            
+            
+           
+        
+        </li>)}
       </ul>
     </div>
   );
