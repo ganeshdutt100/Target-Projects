@@ -56,11 +56,11 @@ export const Todolist = () => {
 
 
 //  save edit options
-const saveKeyPress =(e)=>{
-  if(e.key === "Enter"){
-    saveEdit();
-  }
-}
+// const saveKeyPress =(e)=>{
+//   if(e.key === "Enter"){
+//     saveEdit(index);
+//   }
+// }
 
   return (
     <div className="text-center mt-5">
@@ -83,7 +83,11 @@ const saveKeyPress =(e)=>{
 
         {editingIndex === index ? (
                    <>
-                   <input type="text" onKeyDown={saveKeyPress} value={editingText}  onChange={(e)=> setEditingText(e.target.value)} />
+                   <input type="text" onKeyPress={(e)=>{
+                    if(e.key === 'Enter'){
+                          saveEdit(index)
+                    }
+                   }}  value={editingText}  onChange={(e)=> setEditingText(e.target.value)} />
                    <button className="btn btn-primary" onClick={()=> saveEdit(index)}>save</button>
                    <button className="btn btn-danger" onClick={()=>cancelEdit(index)}>Cancel</button>
                     </>
