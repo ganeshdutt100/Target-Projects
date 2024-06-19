@@ -46,11 +46,29 @@ export const Todolist = () => {
         setEditingText("");
     }
 
+
+    // function event
+    const handleKeyPress =(e)=>{
+       if(e.key === "Enter"){
+        addTodo();
+       }
+    }
+
+
+//  save edit options
+const saveKeyPress =(e)=>{
+  if(e.key === "Enter"){
+    saveEdit();
+  }
+}
+
   return (
     <div className="text-center mt-5">
       <h1>Todo List </h1>
       <input
         type="text"
+        // onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         value={newTodo}
         onChange={(event) => setNewTodo(event.target.value)}
         placeholder="Enter your task here.."
@@ -65,7 +83,7 @@ export const Todolist = () => {
 
         {editingIndex === index ? (
                    <>
-                   <input type="text" value={editingText} onChange={(e)=> setEditingText(e.target.value)} />
+                   <input type="text" onKeyDown={saveKeyPress} value={editingText}  onChange={(e)=> setEditingText(e.target.value)} />
                    <button className="btn btn-primary" onClick={()=> saveEdit(index)}>save</button>
                    <button className="btn btn-danger" onClick={()=>cancelEdit(index)}>Cancel</button>
                     </>
