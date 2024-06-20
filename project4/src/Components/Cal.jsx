@@ -19,6 +19,7 @@ export const Cal = () => {
     "/",
     "=",
     "c",
+    "x",
   ];
 
   const handleButtonClick = (value) => {
@@ -30,6 +31,9 @@ export const Cal = () => {
       }
     } else if (value === "c") {
       setInput("");
+    }
+      else if (value === "x") {
+      setInput(input.slice(0,-1));
     } else {
       setInput(input + value);
     }
