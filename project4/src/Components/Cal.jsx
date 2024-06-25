@@ -17,9 +17,11 @@ export const Cal = () => {
     "-",
     "*",
     "/",
+  
     "=",
     "c",
     "x",
+
   ];
 
   const handleButtonClick = (value) => {
