@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <button onClick={()=>dispatch(increment())} >Add</button>
-    <span>{count}</span>
+   <input type="text" value={count} size={3} />
     <button onClick={()=>dispatch(decrement())}  >Sub</button>
       </>
   )
