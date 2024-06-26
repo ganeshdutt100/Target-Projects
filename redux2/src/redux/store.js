@@ -13,4 +13,4 @@ const reducer = (state =  initialState , action) => {
            }
 }
 
-export const store = configureStore(reducer);
+export const store = configureStore({reducer});
