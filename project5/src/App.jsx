@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import File2 from './Components/File2'
+import File3 from './Components/File3'
 // import
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
 
   return (
     <>
-      <File2 />
+      {/* <File2 /> */}
+      <File3 />
     </>
   )
 }
